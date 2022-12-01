@@ -27,6 +27,11 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 heroes: action.payload
             }
+        case 'HEROES_ADD':
+            return {
+                ...state,
+                heroes: action.payload
+            }
         default: return state
     }
 }

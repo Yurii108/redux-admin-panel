@@ -1,4 +1,5 @@
 // import { useSelector } from 'react-redux';
+import photoHeroe from '../../assets/pngegg.png';
 
 const HeroesListItem = ({onDelete, name, description, element}) => {
 
@@ -24,7 +25,7 @@ const HeroesListItem = ({onDelete, name, description, element}) => {
     return (
         <li 
             className={`card flex-row mb-4 shadow-lg text-white ${elementClassName}`}>
-            <img src="http://www.stpaulsteinbach.org/wp-content/uploads/2014/09/unknown-hero.jpg" 
+            <img src={photoHeroe} 
                  className="img-fluid w-25 d-inline" 
                  alt="unknown hero" 
                  style={{'objectFit': 'cover'}}/>

@@ -1,11 +1,10 @@
-// import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useHttp } from '../../hooks/http.hook';
 import { useDispatch, useSelector } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 
 import { heroeAdd } from '../../actions';
-// import HeroesListItem from "../heroesListItem/HeroesListItem";
-// import Spinner from '../spinner/Spinner';
+
 
 
 // Задача для этого компонента:
@@ -24,6 +23,24 @@ const HeroesAddForm = () => {
     const dispatch = useDispatch();
     const { request } = useHttp();
 
+    const [elements, setElements] = useState([]);
+
+    useEffect(() => {
+
+        request("http://localhost:3001/filters")
+            .then(data => setElements(data))
+        // eslint-disable-next-line
+    }, []);
+
+    const renderElementsList = (elements) => {
+        return elements.map((item) => {
+            let key = uuidv4();
+            return <option key={key} value={item.class}>{item.element}</option>
+        })
+    }
+
+    const element = renderElementsList(elements);
+
     const dataValue = {
         id: uuidv4(),
         name: '',
@@ -36,26 +53,26 @@ const HeroesAddForm = () => {
     }
     const onChangeText = (e) => {
         dataValue.description = e.target.value
-        console.log(dataValue)
+        // console.log(dataValue)
     }
     const onChangeElement = (e) => {
         dataValue.element = e.target.value
     }
 
     const onSubmit = (e) => {
-        e.preventDefault(); 
+        e.preventDefault();
         const json = JSON.stringify(dataValue);
         const data = [...heroes, dataValue];
-        dispatch(heroeAdd(data));
-        request('http://localhost:3001/heroes', 'POST', json);
+        if (dataValue.name.length > 2 && dataValue.description.length > 5) {
+            dispatch(heroeAdd(data));
+            request('http://localhost:3001/heroes', 'POST', json);
+        }
     }
-
-
 
     return (
         <form className="border p-4 shadow-lg rounded" onSubmit={onSubmit}>
             <div className="mb-3">
-                <label htmlFor="name" className="form-label fs-4">Имя нового героя</label>
+                <label htmlFor="name" className="form-label fs-4">Нове ім'я героя</label>
                 <input
                     required
                     type="text"
@@ -64,11 +81,11 @@ const HeroesAddForm = () => {
                     id="name"
                     // value={name}
                     onChange={onChangeName}
-                    placeholder="Как меня зовут?" />
+                    placeholder="Моє ім'я?" />
             </div>
 
             <div className="mb-3">
-                <label htmlFor="text" className="form-label fs-4">Описание</label>
+                <label htmlFor="text" className="form-label fs-4">Опис</label>
                 <textarea
                     required
                     name="text"
@@ -76,27 +93,23 @@ const HeroesAddForm = () => {
                     id="text"
                     // value={text}
                     onChange={onChangeText}
-                    placeholder="Что я умею?"
+                    placeholder="Що я вмію?"
                     style={{ "height": '130px' }} />
             </div>
 
             <div className="mb-3">
-                <label htmlFor="element" className="form-label">Выбрать элемент героя</label>
+                <label htmlFor="element" className="form-label">Виберіть героя</label>
                 <select
                     required
                     className="form-select"
                     id="element"
                     name="element"
                     onChange={onChangeElement}>
-                    <option >Я владею элементом...</option>
-                    <option value="fire">Огонь</option>
-                    <option value="water">Вода</option>
-                    <option value="wind">Ветер</option>
-                    <option value="earth">Земля</option>
+                    {element}
                 </select>
             </div>
 
-            <button type="submit" className="btn btn-primary">Создать</button>
+            <button type="submit" className="btn btn-primary">Створити</button>
         </form>
     )
 }

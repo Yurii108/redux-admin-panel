@@ -10,7 +10,7 @@ const HeroesFilters = () => {
     return (
         <div className="card shadow-lg mt-4">
             <div className="card-body">
-                <p className="card-text">Отфильтруйте героев по элементам</p>
+                <p className="card-text">Фільтрувати героїв за елементами</p>
                 <div className="btn-group">
                     <button className="btn btn-outline-dark active">Все</button>
                     <button className="btn btn-danger">Огонь</button>

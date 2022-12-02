@@ -2,28 +2,49 @@
   "heroes": [
     {
       "id": 1,
-      "name": "Первый герой",
-      "description": "Первый герой в рейтинге!",
+      "name": "First hero",
+      "description": "First hero in the ranking!",
       "element": "fire"
     },
     {
       "id": 2,
-      "name": "Неизвестный герой",
-      "description": "Скрывающийся в тени",
+      "name": "Unknown hero",
+      "description": "Lurking in the shadows",
       "element": "wind"
     },
     {
       "id": 3,
-      "name": "Морской герой",
-      "description": "Как аквамен, но не из DC",
+      "name": "Sea Hero",
+      "description": "As aquaman, but not from DC",
       "element": "water"
+    },
+    {
+      "id": "70833215-ddc2-430d-98c7-51d64661d059",
+      "name": "Yurii Paraska",
+      "description": "dasdasd",
+      "element": "fire"
     }
   ],
   "filters": [
-    "all",
-    "fire",
-    "water",
-    "wind",
-    "earth"
+    {
+      "element": "Всі елементи",
+      "class": "all"
+    },
+    {
+      "element": "Вогонь",
+      "class": "fire"
+    },
+    {
+      "element": "Вода",
+      "class": "water"
+    },
+    {
+      "element": "Вітер",
+      "class": "wind"
+    },
+    {
+      "element": "Земля",
+      "class": "earth"
+    }
   ]
 }

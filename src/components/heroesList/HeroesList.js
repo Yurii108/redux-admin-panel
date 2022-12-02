@@ -30,6 +30,7 @@ const HeroesList = () => {
     const onDelete = (id) => {
         const data = heroes.filter(elem => elem.id !== id)
         dispatch(heroeDelete(data))
+        request(`http://localhost:3001/heroes/${id}`, 'DELETE')
     }
 
     if (heroesLoadingStatus === "loading") {

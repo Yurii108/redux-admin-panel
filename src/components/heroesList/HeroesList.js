@@ -1,7 +1,6 @@
 import { useHttp } from '../../hooks/http.hook';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-// import { v4 as uuidv4 } from 'uuid';
 
 import { heroesFetching, heroesFetched, heroesFetchingError, heroeDelete } from '../../actions';
 import HeroesListItem from "../heroesListItem/HeroesListItem";
@@ -50,7 +49,6 @@ const HeroesList = () => {
                 onDelete={() => onDelete(id)} />
         })
     }
-
 
     const elements = renderHeroesList(heroes);
 

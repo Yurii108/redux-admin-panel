@@ -1,4 +1,5 @@
 // import { useState } from "react";
+import { useHttp } from '../../hooks/http.hook';
 import { useDispatch, useSelector } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -21,6 +22,7 @@ const HeroesAddForm = () => {
 
     const { heroes } = useSelector(state => state);
     const dispatch = useDispatch();
+    const { request } = useHttp();
 
     const dataValue = {
         id: uuidv4(),
@@ -31,7 +33,6 @@ const HeroesAddForm = () => {
 
     const onChangeName = (e) => {
         dataValue.name = e.target.value
-        console.log(dataValue)
     }
     const onChangeText = (e) => {
         dataValue.description = e.target.value
@@ -39,14 +40,14 @@ const HeroesAddForm = () => {
     }
     const onChangeElement = (e) => {
         dataValue.element = e.target.value
-        console.log(dataValue)
     }
 
     const onSubmit = (e) => {
         e.preventDefault(); 
+        const json = JSON.stringify(dataValue);
         const data = [...heroes, dataValue];
-        dispatch(heroeAdd(data))
-        console.log(heroes)
+        dispatch(heroeAdd(data));
+        request('http://localhost:3001/heroes', 'POST', json);
     }
 
 

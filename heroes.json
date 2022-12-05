@@ -17,34 +17,33 @@
       "name": "Sea Hero",
       "description": "As aquaman, but not from DC",
       "element": "water"
-    },
-    {
-      "id": "70833215-ddc2-430d-98c7-51d64661d059",
-      "name": "Yurii Paraska",
-      "description": "dasdasd",
-      "element": "fire"
     }
   ],
   "filters": [
     {
-      "element": "Всі елементи",
-      "class": "all"
+      "select": "Всі елементи",
+      "element": "all",
+      "class": "btn btn-outline-dark active"
     },
     {
-      "element": "Вогонь",
-      "class": "fire"
+      "select": "Вогонь",
+      "element": "fire",
+      "class": "btn btn-danger"
     },
     {
-      "element": "Вода",
-      "class": "water"
+      "select": "Вода",
+      "element": "water",
+      "class": "btn btn-primary"
     },
     {
-      "element": "Вітер",
-      "class": "wind"
+      "select": "Вітер",
+      "element": "wind",
+      "class": "btn btn-success"
     },
     {
-      "element": "Земля",
-      "class": "earth"
+      "select": "Земля",
+      "element": "earth",
+      "class": "btn btn-secondary"
     }
   ]
 }

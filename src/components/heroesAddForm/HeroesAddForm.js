@@ -35,7 +35,7 @@ const HeroesAddForm = () => {
     const renderElementsList = (elements) => {
         return elements.map((item) => {
             let key = uuidv4();
-            return <option key={key} value={item.class}>{item.element}</option>
+            return <option key={key} value={item.element}>{item.select}</option>
         })
     }
 

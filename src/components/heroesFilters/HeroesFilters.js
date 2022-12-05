@@ -1,6 +1,11 @@
 import { useEffect, useState } from "react";
 import { useHttp } from '../../hooks/http.hook';
 import { v4 as uuidv4 } from 'uuid';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { heroeFilter } from '../../actions';
+
+
 
 
 // Задача для этого компонента:
@@ -11,7 +16,9 @@ import { v4 as uuidv4 } from 'uuid';
 // Представьте, что вы попросили бэкенд-разработчика об этом
 
 const HeroesFilters = () => {
-    
+
+    const { heroes, filters } = useSelector(state => state);
+    const dispatch = useDispatch();
     const { request } = useHttp();
 
     const [elements, setElements] = useState([]);
@@ -23,18 +30,45 @@ const HeroesFilters = () => {
         // eslint-disable-next-line
     }, []);
 
+    const filterHeroes = (items, filter) => {
+        switch (filter) {
+            case 'fire':
+                return items.filter(item => item.element === filter)
+            case 'water':
+                return items.filter(item => item.element === filter)
+            case 'wind':
+                return items.filter(item => item.element === filter)
+            case 'earth':
+                return items.filter(item => item.element === filter)
+            default:
+                return items;
+        }
+    }
+
+    const filterPost = (filterBtn) => {
+        dispatch(heroeFilter(filterHeroes(heroes, filterBtn)))
+        console.log(filters)
+        console.log(heroes)
+
+    }
+    setTimeout(() => {
+        console.log(filters)
+    }, [1000])
+    
+
     const renderElementsList = (elements) => {
         return elements.map((item) => {
             let key = uuidv4();
-            return <button 
-            key={key} 
-            className={item.class} 
-            value={item.element}>{item.select}</button>
+            return <button
+                key={key}
+                className={item.class}
+                onClick={() => filterPost(item.element)}>
+                {item.select}</button>
         })
     }
 
     const button = renderElementsList(elements);
-    
+
 
     return (
         <div className="card shadow-lg mt-4">

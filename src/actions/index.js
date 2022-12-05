@@ -30,3 +30,10 @@ export const heroeAdd = (heroe) => {
         payload: heroe
     }
 }
+
+export const heroeFilter = (filter) => {
+    return {
+        type: 'HEROES_FILTER',
+        payload: filter
+    }
+}

@@ -46,15 +46,15 @@ const HeroesFilters = () => {
     }
 
     const filterPost = (filterBtn) => {
-        dispatch(heroeFilter(filterHeroes(heroes, filterBtn)))
+        dispatch(heroeFilter(filterBtn));
         console.log(filters)
         console.log(heroes)
-
     }
-    setTimeout(() => {
-        console.log(filters)
-    }, [1000])
-    
+
+    // setTimeout(() => {
+    //     console.log(filters)
+    // }, [1000])
+
 
     const renderElementsList = (elements) => {
         return elements.map((item) => {

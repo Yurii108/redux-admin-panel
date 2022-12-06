@@ -13,39 +13,9 @@
       "element": "wind"
     },
     {
-      "id": 3,
+      "id": "3a8edac8-cd37-46f2-b40b-bb5a302cc722",
       "name": "Sea Hero",
       "description": "As aquaman, but not from DC",
-      "element": "water"
-    },
-    {
-      "id": "439a355e-6444-46dd-b34b-325a01ed9524",
-      "name": "casdca",
-      "description": "csdcasdcds",
-      "element": "earth"
-    },
-    {
-      "id": "3b8f20f9-16bd-4b54-8732-9952c325e853",
-      "name": "fasdfasdfasdfasd",
-      "description": "fdfasdfasd",
-      "element": "earth"
-    },
-    {
-      "id": "fb93628c-cba3-43c5-bec9-6635d4d8420c",
-      "name": "dfsd",
-      "description": "fasdfasd",
-      "element": ""
-    },
-    {
-      "id": "5a54332e-5c0a-466e-b842-86d6c2be1489",
-      "name": "sdfasd",
-      "description": "fasdfasdfasd",
-      "element": "wind"
-    },
-    {
-      "id": "602ec3bb-eb9b-4980-a921-807f612fa8ce",
-      "name": "ASDFASDFADSFASD",
-      "description": "sadFSFASDFSD",
       "element": "water"
     }
   ],

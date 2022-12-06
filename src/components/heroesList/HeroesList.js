@@ -50,7 +50,22 @@ const HeroesList = () => {
         })
     }
 
-    const elements = filters.length === 0 ? renderHeroesList(heroes) : renderHeroesList(filters);
+    const filterHeroes = (items, filter) => {
+        switch (filter) {
+            case 'fire':
+                return items.filter(item => item.element === filter)
+            case 'water':
+                return items.filter(item => item.element === filter)
+            case 'wind':
+                return items.filter(item => item.element === filter)
+            case 'earth':
+                return items.filter(item => item.element === filter)
+            default:
+                return items;
+        }
+    }
+
+    const elements = renderHeroesList(filterHeroes(heroes, filters));
 
     return (
         <ul>

@@ -7,6 +7,7 @@ import { heroesFetching, heroesFetched, heroesFetchingError, heroeDelete } from 
 import HeroesListItem from "../heroesListItem/HeroesListItem";
 import Spinner from '../spinner/Spinner';
 import './heroesList.scss';
+import { useCallback } from 'react';
 
 // Задача для этого компонента:
 // При клике на "крестик" идет удаление персонажа из общего состояния
@@ -28,11 +29,12 @@ const HeroesList = () => {
         // eslint-disable-next-line
     }, []);
 
-    const onDelete = (id) => {
-        const data = heroes.filter(elem => elem.id !== id)
-        dispatch(heroeDelete(data))
+    const onDelete = useCallback((id) => {
         request(`http://localhost:3001/heroes/${id}`, 'DELETE')
-    }
+        .then(data => dispatch(heroeDelete(data)))
+        .catch(err => console.log(err));
+        
+    }, [request])
 
     if (heroesLoadingStatus === "loading") {
         return <Spinner />;
@@ -42,7 +44,13 @@ const HeroesList = () => {
 
     const renderHeroesList = (arr) => {
         if (arr.length === 0) {
-            return <h5 className="text-center mt-5">Героев пока нет</h5>
+            return (
+                <CSSTransition
+                    timeout={500}
+                    classNames="item">
+                    <h5 className="text-center mt-5">Героев пока нет</h5>
+                </CSSTransition>
+            )
         }
 
         return arr.map(({ id, ...props }) => {
@@ -75,8 +83,6 @@ const HeroesList = () => {
     }
 
     const elements = renderHeroesList(filterHeroes(heroes, filters));
-
-    // const nodeRef = useRef(null);
 
     return (
         <TransitionGroup component="ul">

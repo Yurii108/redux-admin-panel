@@ -7,43 +7,43 @@
       "element": "fire"
     },
     {
-      "id": 2,
+      "id": "b295397d-7a42-49fd-bc9a-1140659590b8",
       "name": "Unknown hero",
       "description": "Lurking in the shadows",
       "element": "wind"
     },
     {
-      "id": "3a8edac8-cd37-46f2-b40b-bb5a302cc722",
-      "name": "Sea Hero",
-      "description": "As aquaman, but not from DC",
-      "element": "water"
+      "id": "44dfcfb3-5cdf-42c1-94c9-90f7c7466e14",
+      "name": "qwqfsd",
+      "description": "fsadffsdfas",
+      "element": "wind"
     }
   ],
   "filters": [
     {
       "select": "Всі елементи",
       "element": "all",
-      "class": "btn btn-outline-dark active"
+      "class": "btn-outline-dark"
     },
     {
       "select": "Вогонь",
       "element": "fire",
-      "class": "btn btn-danger"
+      "class": "btn-danger"
     },
     {
       "select": "Вода",
       "element": "water",
-      "class": "btn btn-primary"
+      "class": "btn-primary"
     },
     {
       "select": "Вітер",
       "element": "wind",
-      "class": "btn btn-success"
+      "class": "btn-success"
     },
     {
       "select": "Земля",
       "element": "earth",
-      "class": "btn btn-secondary"
+      "class": "btn-secondary"
     }
   ]
 }

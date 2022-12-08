@@ -39,24 +39,29 @@ const HeroesAddForm = () => {
         })
     }
 
+    const [nameInput, setNameInput] = useState('');
+    const [idInput, setIdInput] = useState(uuidv4());
+    const [descriptionInput, setDescriptionInput] = useState('');
+    const [elementInput, setElementInput] = useState('');
+
     const element = renderElementsList(elements);
 
     const dataValue = {
-        id: uuidv4(),
-        name: '',
-        description: '',
-        element: ''
+        id: idInput,
+        name: nameInput,
+        description: descriptionInput,
+        element: elementInput
     }
 
     const onChangeName = (e) => {
-        dataValue.name = e.target.value
-    }
-    const onChangeText = (e) => {
-        dataValue.description = e.target.value
+        setNameInput(e.target.value)
         // console.log(dataValue)
     }
+    const onChangeText = (e) => {
+        setDescriptionInput(e.target.value)
+    }
     const onChangeElement = (e) => {
-        dataValue.element = e.target.value
+        setElementInput(e.target.value)
     }
 
     const onSubmit = (e) => {
@@ -65,7 +70,13 @@ const HeroesAddForm = () => {
         const data = [...heroes, dataValue];
         if (dataValue.name.length > 2 && dataValue.description.length > 5) {
             dispatch(heroeAdd(data));
-            request('http://localhost:3001/heroes', 'POST', json);
+            request('http://localhost:3001/heroes', 'POST', json)
+                .finally(() => {
+                    setNameInput('');
+                    setDescriptionInput('');
+                    setElementInput('');
+                    setIdInput(uuidv4());
+                })
         }
     }
 
@@ -79,7 +90,7 @@ const HeroesAddForm = () => {
                     name="name"
                     className="form-control"
                     id="name"
-                    // value={name}
+                    value={nameInput}
                     onChange={onChangeName}
                     placeholder="Моє ім'я?" />
             </div>
@@ -91,7 +102,7 @@ const HeroesAddForm = () => {
                     name="text"
                     className="form-control"
                     id="text"
-                    // value={text}
+                    value={descriptionInput}
                     onChange={onChangeText}
                     placeholder="Що я вмію?"
                     style={{ "height": '130px' }} />
@@ -104,6 +115,7 @@ const HeroesAddForm = () => {
                     className="form-select"
                     id="element"
                     name="element"
+                    value={elementInput}
                     onChange={onChangeElement}>
                     {element}
                 </select>

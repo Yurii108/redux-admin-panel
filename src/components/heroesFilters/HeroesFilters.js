@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react";
 import { useHttp } from '../../hooks/http.hook';
-import { v4 as uuidv4 } from 'uuid';
+import { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
+import classNames from "classnames";
 
-import { heroeFilter } from '../../actions';
+import { filtersFetching, filtersFetchingError, filtersFetched, activeFilterChanged } from '../../actions';
 
+import Spinner from '../spinner/Spinner';
 
 
 
@@ -17,69 +18,58 @@ import { heroeFilter } from '../../actions';
 
 const HeroesFilters = () => {
 
-    const { heroes, filters } = useSelector(state => state);
+    const { filters, filtersLoadingStatus, activeFilter } = useSelector(state => state);
     const dispatch = useDispatch();
     const { request } = useHttp();
 
-    const [elements, setElements] = useState([]);
-
     useEffect(() => {
-
+        dispatch(filtersFetching());
         request("http://localhost:3001/filters")
-            .then(data => setElements(data))
+            .then(data => console.log(data))
+            .then(data => dispatch(filtersFetched(data)))
+            .catch(() => dispatch(filtersFetchingError()))
         // eslint-disable-next-line
     }, []);
 
-    const filterHeroes = (items, filter) => {
-        switch (filter) {
-            case 'fire':
-                return items.filter(item => item.element === filter)
-            case 'water':
-                return items.filter(item => item.element === filter)
-            case 'wind':
-                return items.filter(item => item.element === filter)
-            case 'earth':
-                return items.filter(item => item.element === filter)
-            default:
-                return items;
+    if (filtersLoadingStatus === "loading") {
+        return <Spinner />;
+    } else if (filtersLoadingStatus === "error") {
+        return <h5 className="text-center mt-5">Ошибка загрузки</h5>
+    }
+
+    const renderFilter = (arr) => {
+
+        if (arr.length === 0) {
+            return <h5 className="text-center mt-5">Фільтри не знайденні</h5>
         }
-    }
 
-    const filterPost = (filterBtn) => {
-        dispatch(heroeFilter(filterBtn));
-        console.log(filters)
-        console.log(heroes)
-    }
+        return arr.map(({ className, element, select }) => {
 
-    // setTimeout(() => {
-    //     console.log(filters)
-    // }, [1000])
+            const btnClass = classNames('btn', className, {
+                'active': select === activeFilter
+            })
 
-
-    const renderElementsList = (elements) => {
-        return elements.map((item) => {
-            let key = uuidv4();
             return <button
-                key={key}
-                className={item.class}
-                onClick={() => filterPost(item.element)}>
-                {item.select}</button>
+                key={element}
+                id={element}
+                className={btnClass}
+                onClick={() => dispatch(activeFilterChanged(select))}>
+                {select}</button>
+
         })
     }
 
-    const button = renderElementsList(elements);
-
+    const button = renderFilter(filters);
+  
+    setTimeout(() => {
+        console.log(filters)
+    }, 1000)
 
     return (
         <div className="card shadow-lg mt-4">
             <div className="card-body">
                 <p className="card-text">Фільтрувати героїв за елементами</p>
                 <div className="btn-group">
-                    {/* <button className="btn btn-outline-dark active">Все</button>
-                    <button className="btn btn-danger">Огонь</button>
-                    <button className="btn btn-primary">Вода</button>
-                    <button className="btn btn-success">Ветер</button>
-                    <button className="btn btn-secondary">Земля</button> */}
                     {button}
                 </div>
             </div>

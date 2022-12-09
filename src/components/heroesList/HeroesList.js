@@ -1,5 +1,5 @@
 import { useHttp } from '../../hooks/http.hook';
-import { useEffect } from 'react';
+import { useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
@@ -7,7 +7,6 @@ import { heroesFetching, heroesFetched, heroesFetchingError, heroeDelete } from 
 import HeroesListItem from "../heroesListItem/HeroesListItem";
 import Spinner from '../spinner/Spinner';
 import './heroesList.scss';
-import { useCallback } from 'react';
 
 // Задача для этого компонента:
 // При клике на "крестик" идет удаление персонажа из общего состояния
@@ -15,14 +14,13 @@ import { useCallback } from 'react';
 // Удаление идет и с json файла при помощи метода DELETE
 
 const HeroesList = () => {
-    const { filters, heroes, heroesLoadingStatus } = useSelector(state => state);
+    const { filtredHeroes, heroesLoadingStatus } = useSelector(state => state);
     const dispatch = useDispatch();
     const { request } = useHttp();
 
     useEffect(() => {
         dispatch(heroesFetching());
         request("http://localhost:3001/heroes")
-
             .then(data => dispatch(heroesFetched(data)))
             .catch(() => dispatch(heroesFetchingError()))
 
@@ -31,9 +29,10 @@ const HeroesList = () => {
 
     const onDelete = useCallback((id) => {
         request(`http://localhost:3001/heroes/${id}`, 'DELETE')
-        .then(data => dispatch(heroeDelete(data)))
-        .catch(err => console.log(err));
-        
+            .then(data => dispatch(heroeDelete(data)))
+            .then(dispatch(heroeDelete(id)))
+            .catch(err => console.log(err));
+        // eslint-disable-next-line
     }, [request])
 
     if (heroesLoadingStatus === "loading") {
@@ -67,22 +66,7 @@ const HeroesList = () => {
         })
     }
 
-    const filterHeroes = (items, filter) => {
-        switch (filter) {
-            case 'fire':
-                return items.filter(item => item.element === filter)
-            case 'water':
-                return items.filter(item => item.element === filter)
-            case 'wind':
-                return items.filter(item => item.element === filter)
-            case 'earth':
-                return items.filter(item => item.element === filter)
-            default:
-                return items;
-        }
-    }
-
-    const elements = renderHeroesList(filterHeroes(heroes, filters));
+    const elements = renderHeroesList(filtredHeroes);
 
     return (
         <TransitionGroup component="ul">

@@ -17,27 +17,27 @@
     {
       "select": "Всі елементи",
       "element": "all",
-      "class": "btn-outline-dark"
+      "className": "btn-outline-dark"
     },
     {
       "select": "Вогонь",
       "element": "fire",
-      "class": "btn-danger"
+      "className": "btn-danger"
     },
     {
       "select": "Вода",
       "element": "water",
-      "class": "btn-primary"
+      "className": "btn-primary"
     },
     {
       "select": "Вітер",
       "element": "wind",
-      "class": "btn-success"
+      "className": "btn-success"
     },
     {
       "select": "Земля",
       "element": "earth",
-      "class": "btn-secondary"
+      "className": "btn-secondary"
     }
   ]
 }

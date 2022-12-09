@@ -4,7 +4,7 @@ const initialState = {
     filters: [],
     filtersLoadingStatus: 'idle',
     activeFilter: 'all',
-    filtredHeroes: []
+    filteredHeroes: []
 }
 
 const reducer = (state = initialState, action) => {
@@ -18,7 +18,7 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 heroes: action.payload,
-                filtredHeroes: state.activeFilter === 'all' ?
+                filteredHeroes: state.activeFilter === 'all' ?
                     action.payload :
                     action.payload.filter(elem => elem.element === state.activeFilter),
                 heroesLoadingStatus: 'idle'
@@ -48,27 +48,27 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 activeFilter: action.payload,
-                filtredHeroes: action.payload === 'all' ?
+                filteredHeroes: action.payload === 'all' ?
                     state.heroes :
                     state.heroes.filter(elem => elem.element === action.payload)
             }
         case 'HEROES_ADD':
-            const newAddHeroeList = [...state, action.payload];
+            const newAddHeroeList = [...state.heroes, action.payload];
             return {
                 ...state,
                 heroes: newAddHeroeList,
-                filtredHeroes: state.activeFilter === 'all' ?
-                action.payload :
-                action.payload.filter(elem => elem.element === state.activeFilter)
+                filteredHeroes: state.activeFilter === 'all' ?
+                newAddHeroeList :
+                newAddHeroeList.filter(elem => elem.element === state.activeFilter)
             }
         case 'HEROES_DELETE':
             const newHeroesList = state.heroes.filter(elem => elem.id !== action.payload)
             return {
                 ...state,
                 heroes: newHeroesList,
-                filtredHeroes: state.activeFilter === 'all' ?
-                    action.payload :
-                    action.payload.filter(elem => elem.element === state.activeFilter),
+                filteredHeroes: state.activeFilter === 'all' ?
+                    newHeroesList :
+                    newHeroesList.filter(elem => elem.element === state.activeFilter),
             }
         default: return state
     }

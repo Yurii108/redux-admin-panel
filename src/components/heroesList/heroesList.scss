@@ -1,21 +1,46 @@
-.remove-btn {
-  margin-right: 0.5rem;
-}
+// .remove-btn {
+//   margin-right: 0.5rem;
+// }
+
+// .item-enter {
+//   opacity: 0;
+// }
+
+// .item-enter-active {
+//   opacity: 1;
+//   transition: opacity 500ms ease-in;
+// }
+
+// .item-exit {
+//   opacity: 1;
+// }
+
+// .item-exit-active {
+//   opacity: 0;
+//   transition: opacity 500ms ease-in;
+// }
 
 .item-enter {
   opacity: 0;
+  transform: translateX(-100%);
 }
 
 .item-enter-active {
   opacity: 1;
-  transition: opacity 500ms ease-in;
+  transform: translateX(0%);
 }
 
 .item-exit {
   opacity: 1;
+  transform: translateX(0%);
 }
 
 .item-exit-active {
   opacity: 0;
-  transition: opacity 500ms ease-in;
+  transform: translateX(100%);
+}
+
+.item-enter-active,
+.item-exit-active {
+  transition: opacity 400ms, transform 400ms;
 }

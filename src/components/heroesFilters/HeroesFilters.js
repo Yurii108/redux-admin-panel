@@ -53,7 +53,7 @@ const HeroesFilters = () => {
                 key={element}
                 id={element}
                 className={btnClass}
-                onClick={() => dispatch(activeFilterChanged(select))}>
+                onClick={() => dispatch(activeFilterChanged(element))}>
                 {select}</button>
 
         })

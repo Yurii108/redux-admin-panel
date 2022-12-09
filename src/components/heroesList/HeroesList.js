@@ -3,7 +3,7 @@ import { useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
-import { heroesFetching, heroesFetched, heroesFetchingError, heroeDelete } from '../../actions';
+import { heroesFetching, heroesFetched, heroesFetchingError, heroDelete } from '../../actions';
 import HeroesListItem from "../heroesListItem/HeroesListItem";
 import Spinner from '../spinner/Spinner';
 import './heroesList.scss';
@@ -14,7 +14,7 @@ import './heroesList.scss';
 // Удаление идет и с json файла при помощи метода DELETE
 
 const HeroesList = () => {
-    const { filtredHeroes, heroesLoadingStatus } = useSelector(state => state);
+    const { filteredHeroes, heroesLoadingStatus } = useSelector(state => state);
     const dispatch = useDispatch();
     const { request } = useHttp();
 
@@ -29,8 +29,8 @@ const HeroesList = () => {
 
     const onDelete = useCallback((id) => {
         request(`http://localhost:3001/heroes/${id}`, 'DELETE')
-            .then(data => dispatch(heroeDelete(data)))
-            .then(dispatch(heroeDelete(id)))
+            .then(data => dispatch(heroDelete(data)))
+            .then(dispatch(heroDelete(id)))
             .catch(err => console.log(err));
         // eslint-disable-next-line
     }, [request])
@@ -66,7 +66,7 @@ const HeroesList = () => {
         })
     }
 
-    const elements = renderHeroesList(filtredHeroes);
+    const elements = renderHeroesList(filteredHeroes);
 
     return (
         <TransitionGroup component="ul">

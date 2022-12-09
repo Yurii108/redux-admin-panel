@@ -43,16 +43,16 @@ export const activeFilterChanged = (filter) => {
     }
 }
 
-export const heroeDelete = (id) => {
+export const heroAdd = (hero) => {
     return {
-        type: 'HEROES_DELETE',
-        payload: id
+        type: 'HERO_ADD',
+        payload: hero
     }
 }
 
-export const heroeAdd = (heroe) => {
+export const heroDelete = (id) => {
     return {
-        type: 'HEROES_ADD',
-        payload: heroe
+        type: 'HERO_DELETE',
+        payload: id
     }
 }

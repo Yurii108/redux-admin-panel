@@ -11,6 +11,12 @@
       "name": "Unknown hero",
       "description": "Lurking in the shadows",
       "element": "wind"
+    },
+    {
+      "id": "aced3a48-b2ff-4b58-8f24-95acd1fee794",
+      "name": "asfsd",
+      "description": "dsfasdfsdf",
+      "element": "water"
     }
   ],
   "filters": [

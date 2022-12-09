@@ -25,9 +25,9 @@ const HeroesFilters = () => {
     useEffect(() => {
         dispatch(filtersFetching());
         request("http://localhost:3001/filters")
-            .then(data => console.log(data))
-            // .then(data => dispatch(filtersFetched(data)))
-            // .catch(() => dispatch(filtersFetchingError()))
+            .then(data => dispatch(filtersFetched(data)))
+            .catch(() => dispatch(filtersFetchingError()))
+
         // eslint-disable-next-line
     }, []);
 
@@ -60,10 +60,6 @@ const HeroesFilters = () => {
     }
 
     const button = renderFilter(filters);
-  
-    // setTimeout(() => {
-    //     console.log(filters)
-    // }, 1000)
 
     return (
         <div className="card shadow-lg mt-4">

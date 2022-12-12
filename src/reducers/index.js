@@ -3,8 +3,7 @@ const initialState = {
     heroesLoadingStatus: 'idle',
     filters: [],
     filtersLoadingStatus: 'idle',
-    activeFilter: 'all',
-    filteredHeroes: []
+    activeFilter: 'all'
 }
 
 const reducer = (state = initialState, action) => {
@@ -18,9 +17,6 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 heroes: action.payload,
-                filteredHeroes: state.activeFilter === 'all' ?
-                    action.payload :
-                    action.payload.filter(elem => elem.element === state.activeFilter),
                 heroesLoadingStatus: 'idle'
             }
         case 'HEROES_FETCHING_ERROR':
@@ -47,28 +43,17 @@ const reducer = (state = initialState, action) => {
         case 'ACTIVE_FILTER_CHANGED':
             return {
                 ...state,
-                activeFilter: action.payload,
-                filteredHeroes: action.payload === 'all' ?
-                    state.heroes :
-                    state.heroes.filter(item => item.element === action.payload)
+                activeFilter: action.payload
             }
         case 'HERO_ADD':
-            const newAddHeroeList = [...state.heroes, action.payload];
             return {
                 ...state,
-                heroes: newAddHeroeList,
-                filteredHeroes: state.activeFilter === 'all' ?
-                newAddHeroeList :
-                newAddHeroeList.filter(elem => elem.element === state.activeFilter)
+                heroes: [...state.heroes, action.payload]
             }
         case 'HERO_DELETE':
-            const newHeroesList = state.heroes.filter(elem => elem.id !== action.payload)
             return {
                 ...state,
-                heroes: newHeroesList,
-                filteredHeroes: state.activeFilter === 'all' ?
-                    newHeroesList :
-                    newHeroesList.filter(elem => elem.element === state.activeFilter),
+                heroes: state.heroes.filter(elem => elem.id !== action.payload)
             }
         default: return state
     }

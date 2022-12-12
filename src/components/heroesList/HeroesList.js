@@ -8,8 +8,15 @@ import HeroesListItem from "../heroesListItem/HeroesListItem";
 import Spinner from '../spinner/Spinner';
 import './heroesList.scss';
 
-const HeroesList = () => {
-    const { filteredHeroes, heroesLoadingStatus } = useSelector(state => state);
+const HeroesList = (props) => {
+    const filteredHeroes = useSelector(state => {
+        if (state.activeFilter === 'all') {
+            return state.heroes;
+        } else {
+            return state.heroes.filter(elem => elem.element === state.activeFilter);
+        }
+    });
+    const heroesLoadingStatus = useSelector(state => state.heroesLoadingStatus);
     const dispatch = useDispatch();
     const { request } = useHttp();
 

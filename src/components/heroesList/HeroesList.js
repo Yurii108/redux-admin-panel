@@ -10,13 +10,13 @@ import './heroesList.scss';
 
 const HeroesList = (props) => {
     const filteredHeroes = useSelector(state => {
-        if (state.activeFilter === 'all') {
-            return state.heroes;
+        if (state.filters.activeFilter === 'all') {
+            return state.heroes.heroes;
         } else {
-            return state.heroes.filter(elem => elem.element === state.activeFilter);
+            return state.heroes.heroes.filter(elem => elem.element === state.filters.activeFilter);
         }
     });
-    const heroesLoadingStatus = useSelector(state => state.heroesLoadingStatus);
+    const heroesLoadingStatus = useSelector(state => state.heroes.heroesLoadingStatus);
     const dispatch = useDispatch();
     const { request } = useHttp();
 

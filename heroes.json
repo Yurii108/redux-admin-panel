@@ -13,16 +13,16 @@
       "element": "wind"
     },
     {
-      "id": "e7b06bed-8c13-4385-a4eb-cd5331191df4",
-      "name": "fasdf",
-      "description": "fasdfasdf",
-      "element": "water"
-    },
-    {
       "id": "8a6fca73-1943-4ae5-8271-32825ca145c7",
       "name": "fasdfsdf",
       "description": "fasdfasdfa",
       "element": "earth"
+    },
+    {
+      "id": "5877adca-0093-43a5-b070-4d9279691d43",
+      "name": "Namar",
+      "description": "Nothing",
+      "element": "water"
     }
   ],
   "filters": [

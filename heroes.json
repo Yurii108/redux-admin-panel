@@ -23,6 +23,12 @@
       "name": "Namar",
       "description": "Nothing",
       "element": "water"
+    },
+    {
+      "id": "43518a71-2ce2-4b39-bc60-b7d6763543a0",
+      "name": "vsad",
+      "description": "vsdvasd",
+      "element": "fire"
     }
   ],
   "filters": [

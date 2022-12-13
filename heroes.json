@@ -13,28 +13,10 @@
       "element": "wind"
     },
     {
-      "id": "8a6fca73-1943-4ae5-8271-32825ca145c7",
-      "name": "fasdfsdf",
-      "description": "fasdfasdfa",
-      "element": "earth"
-    },
-    {
-      "id": "5877adca-0093-43a5-b070-4d9279691d43",
-      "name": "Namar",
-      "description": "Nothing",
+      "id": "ffa18de5-3b39-45a2-974b-24e01fc13adb",
+      "name": "Robbi",
+      "description": "Swimming realy fast",
       "element": "water"
-    },
-    {
-      "id": "43518a71-2ce2-4b39-bc60-b7d6763543a0",
-      "name": "vsad",
-      "description": "vsdvasd",
-      "element": "fire"
-    },
-    {
-      "id": "5ad2c8a8-b013-4e71-8deb-6e7b4f621412",
-      "name": "fasd",
-      "description": "sdasdfasd",
-      "element": "earth"
     }
   ],
   "filters": [

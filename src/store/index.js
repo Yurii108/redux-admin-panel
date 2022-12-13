@@ -1,26 +1,20 @@
-import { createStore, combineReducers, compose } from 'redux';
+import { createStore, combineReducers, compose, applyMiddleware } from 'redux';
 import heroes from '../reducers';
 import filters from '../reducers';
 
-const enhancer = (createStore) => (...args) => {
-    const store = createStore(...args);
-
-    const oldDespatch = store.dispatch;
-    store.dispatch = action => {
-        if (typeof action === 'string') {
-            return oldDespatch({
-                type: action
-            })
-        }
-        return oldDespatch(action);
+const stringMiddleware = () => (naxt) => (action) => {
+    if (typeof action === 'string') {
+        return naxt({
+            type: action
+        })
     }
-    return store;
+    return naxt(action);
 }
 
 const store = createStore(
     combineReducers({ heroes, filters }),
     compose(
-        enhancer,
+        applyMiddleware(stringMiddleware),
         window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
     ));
 

@@ -29,11 +29,17 @@
       "name": "vsad",
       "description": "vsdvasd",
       "element": "fire"
+    },
+    {
+      "id": "5ad2c8a8-b013-4e71-8deb-6e7b4f621412",
+      "name": "fasd",
+      "description": "sdasdfasd",
+      "element": "earth"
     }
   ],
   "filters": [
     {
-      "select": "Всі елементи",
+      "select": "Всі",
       "element": "all",
       "className": "btn-outline-dark"
     },

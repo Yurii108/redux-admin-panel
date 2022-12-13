@@ -17,6 +17,12 @@
       "name": "Robbi",
       "description": "Swimming realy fast",
       "element": "water"
+    },
+    {
+      "id": "611a835c-4ec4-4ca1-99f9-3bd88e545122",
+      "name": "Deep root",
+      "description": "Indestructible",
+      "element": "earth"
     }
   ],
   "filters": [

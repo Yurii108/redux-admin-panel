@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 
-import { heroAdd } from '../../actions';
+import { heroAdd } from '../heroesList/heroesSlice';
 
 const HeroesAddForm = () => {
 
@@ -29,7 +29,7 @@ const HeroesAddForm = () => {
         if (dataValue.name.length > 2 && dataValue.description.length > 5) {
 
             request('http://localhost:3001/heroes', 'POST', json)
-                .then(res => console.log(res, 'Success'))
+                // .then(res => console.log(res, 'Success'))
                 .then(dispatch(heroAdd(dataValue)))
                 .catch(err => console.log(err))
                 .finally(() => {

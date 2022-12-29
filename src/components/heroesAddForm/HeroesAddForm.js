@@ -2,8 +2,10 @@ import { useHttp } from '../../hooks/http.hook';
 import { useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
+import store from '../../store';
 
 import { heroAdd } from '../heroesList/heroesSlice';
+import {selectAll} from '../heroesFilters/filterSlice';
 
 const HeroesAddForm = () => {
 
@@ -11,7 +13,8 @@ const HeroesAddForm = () => {
     const [descriptionInput, setDescriptionInput] = useState('');
     const [elementInput, setElementInput] = useState('');
 
-    const { filters, filtersLoadingStatus } = useSelector(state => state.filters);
+    const { filtersLoadingStatus } = useSelector(state => state.filters);
+    const filters = selectAll(store.getState())
     const dispatch = useDispatch();
     const { request } = useHttp();
 
@@ -47,17 +50,17 @@ const HeroesAddForm = () => {
         } else if (status === "error") {
             return <opton>Помилка при завантаженні</opton>
         }
-        
-        if(filters && filters.length > 0) {
-                        
+
+        if (filters && filters.length > 0) {
+
             return filters.map((item) => {
-                 // eslint-disable-next-line
-                if(item.element === 'all') return;
+                // eslint-disable-next-line
+                if (item.element === 'all') return;
 
                 return <option key={item.element} value={item.element}>{item.select}</option>
             })
         }
-   
+
     }
 
 

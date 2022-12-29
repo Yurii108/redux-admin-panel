@@ -26,27 +26,32 @@
     }
   ],
   "filters": [
-    {
+    { 
+      "id":"all",
       "select": "Всі",
       "element": "all",
       "className": "btn-outline-dark"
     },
     {
+      "id":"fire",
       "select": "Вогонь",
       "element": "fire",
       "className": "btn-danger"
     },
     {
+      "id":"water",
       "select": "Вода",
       "element": "water",
       "className": "btn-primary"
     },
     {
+      "id":"wind",
       "select": "Вітер",
       "element": "wind",
       "className": "btn-success"
     },
     {
+      "id":"earth",
       "select": "Земля",
       "element": "earth",
       "className": "btn-secondary"

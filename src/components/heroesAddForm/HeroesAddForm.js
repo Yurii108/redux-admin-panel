@@ -1,13 +1,15 @@
-import { useHttp } from '../../hooks/http.hook';
 import { useState } from "react";
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 import store from '../../store';
 
-import { heroAdd } from '../heroesList/heroesSlice';
-import {selectAll} from '../heroesFilters/filterSlice';
+import { useCreateHeroMutation } from '../../api/apiSlice';
+
+import { selectAll } from '../heroesFilters/filterSlice';
 
 const HeroesAddForm = () => {
+
+    const [createHero] = useCreateHeroMutation();
 
     const [nameInput, setNameInput] = useState('');
     const [descriptionInput, setDescriptionInput] = useState('');
@@ -15,8 +17,6 @@ const HeroesAddForm = () => {
 
     const { filtersLoadingStatus } = useSelector(state => state.filters);
     const filters = selectAll(store.getState())
-    const dispatch = useDispatch();
-    const { request } = useHttp();
 
     const onSubmit = (e) => {
         e.preventDefault();
@@ -28,19 +28,12 @@ const HeroesAddForm = () => {
             element: elementInput
         }
 
-        const json = JSON.stringify(dataValue);
-        if (dataValue.name.length > 2 && dataValue.description.length > 5) {
+        createHero(dataValue).unwrap();
 
-            request('http://localhost:3001/heroes', 'POST', json)
-                // .then(res => console.log(res, 'Success'))
-                .then(dispatch(heroAdd(dataValue)))
-                .catch(err => console.log(err))
-                .finally(() => {
-                    setNameInput('');
-                    setDescriptionInput('');
-                    setElementInput('');
-                })
-        }
+        setNameInput('');
+        setDescriptionInput('');
+        setElementInput('');
+
     }
 
 

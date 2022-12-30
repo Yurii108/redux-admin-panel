@@ -11,11 +11,38 @@ import './heroesList.scss';
 
 const HeroesList = () => {
 
-    const { 
+    const {
         data: heroes = [],
         isLoading,
         isError,
     } = useGetHeroesQuery();
+
+    // const undeleteHeroesFromApi = [
+    //     {
+    //         id: 1,
+    //         name: 'First hero',
+    //         description: 'First hero in the ranking!',
+    //         element: 'fire'
+    //     },
+    //     {
+    //         id: 'b295397d-7a42-49fd-bc9a-1140659590b8',
+    //         name: 'Unknown hero',
+    //         description: 'Lurking in the shadows',
+    //         element: 'wind'
+    //     },
+    //     {
+    //         id: 'ffa18de5-3b39-45a2-974b-24e01fc13adb',
+    //         name: 'Robbi',
+    //         description: 'Swimming realy fast',
+    //         element: 'water'
+    //     },
+    //     {
+    //         id: '611a835c-4ec4-4ca1-99f9-3bd88e545122',
+    //         name: 'Deep root',
+    //         description: 'Indestructible',
+    //         element: 'earth'
+    //     },
+    // ];
 
     const [deleteHero] = useDeleteHeroMutation();
 

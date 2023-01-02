@@ -18,7 +18,7 @@ export const fetchFilters = createAsyncThunk(
     'heroes/fetchFilters',
     async () => {
         const { request } = useHttp();
-        return await request("http://localhost:3001/filters")
+        return await request("https://6304aa4694b8c58fd7225d37.mockapi.io/filters")
     }
 );
 
